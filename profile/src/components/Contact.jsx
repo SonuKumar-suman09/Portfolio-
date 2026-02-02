@@ -9,22 +9,13 @@ export default function Contact() {
 
   async function onSubmit(e) {
     e.preventDefault();
-    const form = new FormData(e.currentTarget);
-    const payload = Object.fromEntries(form.entries());
-    try {
-      setStatus({ loading: true, ok: null, message: "" });
-      const apiUrl = import.meta.env.VITE_API_URL || '/api';
-      const res = await fetch(`${apiUrl}/contact`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
-      const data = await res.json().catch(() => ({ ok: res.ok }));
-      setStatus({ loading: false, ok: res.ok, message: data?.message || (res.ok ? "Message sent" : "Failed to send") });
-      if (res.ok) e.currentTarget.reset();
-    } catch (err) {
-      setStatus({ loading: false, ok: false, message: "Network error" });
-    }
+    setStatus({ loading: true, ok: null, message: "" });
+    // Frontend only - no backend available
+    setStatus({ loading: false, ok: true, message: "Thank you for your message! Please contact me directly via email or LinkedIn." });
+    setTimeout(() => {
+      setStatus({ loading: false, ok: null, message: "" });
+      e.currentTarget.reset();
+    }, 3000);
   }
   return (
     <section
