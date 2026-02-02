@@ -9,11 +9,11 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="mx-auto flex min-h-[85vh] max-w-6xl flex-col md:flex-row items-center justify-between gap-12 px-6 pb-24 pt-32 relative overflow-hidden"
+      className="mx-auto w-full flex flex-col md:flex-row items-center justify-between gap-8 sm:gap-12 px-4 sm:px-6 pb-16 sm:pb-24 pt-20 sm:pt-32 md:pt-40 relative overflow-hidden max-w-7xl"
     >
       {/* Floating orbs - static for performance */}
-      <div className="absolute top-20 right-20 w-32 h-32 bg-indigo-500/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-20 left-20 w-40 h-40 bg-purple-500/10 rounded-full blur-3xl" />
+      <div className="absolute -top-10 -right-20 w-24 h-24 sm:w-32 sm:h-32 bg-indigo-500/10 rounded-full blur-3xl" />
+      <div className="absolute -bottom-20 -left-10 w-32 h-32 sm:w-40 sm:h-40 bg-purple-500/10 rounded-full blur-3xl" />
 
       {/* Left Content */}
       <div className="flex-1 flex flex-col gap-6 text-center md:text-left relative z-10">
@@ -130,10 +130,10 @@ export default function Hero() {
         initial={{ opacity: 0, scale: 0.8, x: 50 }}
         animate={{ opacity: 1, scale: 1, x: 0 }}
         transition={{ delay: 0.2, duration: 0.8 }}
-        className="relative z-10"
+        className="relative z-10 w-full sm:w-auto flex justify-center md:justify-end"
       >
         <div className="relative">
-          <div className="w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-4 border-indigo-400 shadow-2xl shadow-indigo-500/50 bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center">
+          <div className="w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-4 border-indigo-400 shadow-2xl shadow-indigo-500/50 bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center flex-shrink-0">
             <img 
               src="/profile.png" 
               alt="Sonu Kumar" 
