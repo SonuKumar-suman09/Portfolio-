@@ -26,7 +26,7 @@ const PROJECT_DESCRIPTIONS = {
     title: "DSA Calculator - Expression Evaluator",
     description: "Advanced calculator implementing stack-based expression evaluation with real-time step-by-step visualizations. Demonstrates algorithmic thinking and clean code architecture.",
     tech: ["JavaScript", "React", "Data Structures", "Algorithms"],
-    demoLink: "https://dsacalculator.vercel.app",
+    demoLink: "https://dsa-cal.onrender.com/",
   },
   "Customer-Intelligence-Revenue-Optimization-System": {
     title: "Customer Intelligence Revenue Optimization",
