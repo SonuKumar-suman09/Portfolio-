@@ -1,5 +1,5 @@
 import { motion, useScroll, useSpring } from "framer-motion";
-import { useEffect, useState, lazy, Suspense } from "react";
+import { useEffect, useState } from "react";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import About from "./components/About";
@@ -9,9 +9,6 @@ import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
 import { useTheme } from "./ThemeContext";
-
-// Lazy load non-critical component
-const Testimonials = lazy(() => import("./components/Testimonials"));
 
 // Featured projects to display
 const FEATURED_REPOS = [
@@ -237,9 +234,6 @@ export default function App() {
       <About />
       <Skills />
       <Projects projects={projects} />
-      <Suspense fallback={null}>
-        <Testimonials />
-      </Suspense>
       <Contact />
       <Footer />
       
