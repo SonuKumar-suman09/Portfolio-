@@ -130,10 +130,10 @@ export default function Hero() {
         initial={{ opacity: 0, scale: 0.8, x: 50 }}
         animate={{ opacity: 1, scale: 1, x: 0 }}
         transition={{ delay: 0.2, duration: 0.8 }}
-        className="relative z-10 w-full sm:w-auto flex justify-center md:justify-end"
+        className="relative z-10 flex-shrink-0"
       >
         <div className="relative">
-          <div className="w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-4 border-indigo-400 shadow-2xl shadow-indigo-500/50 bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center flex-shrink-0">
+          <div className="w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 lg:w-[28rem] lg:h-[28rem] rounded-full overflow-hidden border-4 border-indigo-400 shadow-2xl shadow-indigo-500/50 bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center">
             <img 
               src="/profile.png" 
               alt="Sonu Kumar" 
