@@ -49,10 +49,8 @@ export default function Projects({ projects = [] }) {
             whileHover={{ scale: 1.05, y: -2 }}
             className={`hidden rounded-full border px-4 py-2 text-xs font-semibold transition relative sm:inline-flex ${theme === 'dark' ? 'border-white/20 text-slate-200 hover:border-indigo-300 hover:text-white hover:bg-white/5' : 'border-slate-300 text-slate-700 hover:border-indigo-500 hover:text-white hover:bg-indigo-600'}`}
           >
-            <motion.span
+            <span
               className="absolute -left-1 top-1/2 -translate-y-1/2 w-2 h-2 bg-green-400 rounded-full"
-              animate={{ scale: [1, 1.2, 1], opacity: [1, 0.5, 1] }}
-              transition={{ duration: 2, repeat: Infinity }}
             />
             Available for freelance
           </motion.a>

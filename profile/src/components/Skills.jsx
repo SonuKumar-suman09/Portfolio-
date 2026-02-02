@@ -132,17 +132,12 @@ export default function Skills() {
               className={`group relative rounded-2xl border backdrop-blur-xl p-6 hover:border-indigo-300/50 overflow-hidden ${theme==='dark' ? 'border-white/10 bg-gradient-to-br from-slate-900/80 to-slate-800/80' : 'border-black/10 bg-gradient-to-br from-slate-50 to-white'}`}
               style={{ transformStyle: 'preserve-3d' }}
             >
-              {/* Animated gradient border */}
-              <motion.div
+              {/* Animated gradient border - disabled for performance */}
+              <div
                 className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                 style={{
                   background: 'linear-gradient(120deg, rgba(79,70,229,0.2), rgba(139,92,246,0.2), rgba(236,72,153,0.2))',
-                  backgroundSize: '200% 200%',
                 }}
-                animate={{
-                  backgroundPosition: ['0% 0%', '100% 100%', '0% 0%']
-                }}
-                transition={{ duration: 4, repeat: Infinity }}
               />
               
               {/* Glass shine effect */}

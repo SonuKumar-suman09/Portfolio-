@@ -11,19 +11,9 @@ export default function Hero() {
       id="home"
       className="mx-auto flex min-h-[85vh] max-w-6xl flex-col md:flex-row items-center justify-between gap-12 px-6 pb-24 pt-32 relative overflow-hidden"
     >
-      {/* Floating orbs */}
-      <motion.div
-        className="absolute top-20 right-20 w-32 h-32 bg-indigo-500/10 rounded-full blur-3xl"
-        style={{ y: floatY1 }}
-        animate={{ scale: [1, 1.08, 1] }}
-        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-      />
-      <motion.div
-        className="absolute bottom-20 left-20 w-40 h-40 bg-purple-500/10 rounded-full blur-3xl"
-        style={{ y: floatY2 }}
-        animate={{ scale: [1, 1.15, 1] }}
-        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-      />
+      {/* Floating orbs - static for performance */}
+      <div className="absolute top-20 right-20 w-32 h-32 bg-indigo-500/10 rounded-full blur-3xl" />
+      <div className="absolute bottom-20 left-20 w-40 h-40 bg-purple-500/10 rounded-full blur-3xl" />
 
       {/* Left Content */}
       <div className="flex-1 flex flex-col gap-6 text-center md:text-left relative z-10">
