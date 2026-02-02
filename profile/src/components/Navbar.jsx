@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef, memo } from "react";
 import { motion } from "framer-motion";
 import { useTheme } from "../ThemeContext";
 
@@ -10,30 +10,40 @@ const navItems = [
   { label: "Contact", href: "#contact" },
 ];
 
-export default function Navbar() {
+function NavbarComponent() {
   const [active, setActive] = useState("#home");
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const { theme, toggle } = useTheme();
+  const scrollTimeoutRef = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+      // Throttle scroll event
+      if (scrollTimeoutRef.current) return;
       
-      navItems.forEach(item => {
-        const section = document.querySelector(item.href);
-        if (section) {
-          const top = section.offsetTop - 120;
-          const height = section.offsetHeight;
-          if (window.scrollY >= top && window.scrollY < top + height) {
-            setActive(item.href);
+      scrollTimeoutRef.current = setTimeout(() => {
+        setScrolled(window.scrollY > 50);
+        
+        navItems.forEach(item => {
+          const section = document.querySelector(item.href);
+          if (section) {
+            const top = section.offsetTop - 120;
+            const height = section.offsetHeight;
+            if (window.scrollY >= top && window.scrollY < top + height) {
+              setActive(item.href);
+            }
           }
-        }
-      });
+        });
+        scrollTimeoutRef.current = null;
+      }, 50);
     };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current);
+    };
   }, []);
 
   return (
@@ -135,3 +145,5 @@ export default function Navbar() {
     </motion.header>
   );
 }
+
+export default memo(NavbarComponent);

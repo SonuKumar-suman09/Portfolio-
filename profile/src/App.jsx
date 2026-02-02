@@ -1,5 +1,5 @@
 import { motion, useScroll, useSpring } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect, useState, lazy, Suspense } from "react";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import About from "./components/About";
@@ -9,6 +9,9 @@ import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
 import { useTheme } from "./ThemeContext";
+
+// Lazy load non-critical component
+const Testimonials = lazy(() => import("./components/Testimonials"));
 
 // Featured projects to display
 const FEATURED_REPOS = [
@@ -215,31 +218,16 @@ export default function App() {
         <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(79,70,229,0.05)_1px,transparent_1px),linear-gradient(to_bottom,rgba(79,70,229,0.05)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,black,transparent)]" />
       </div>
       
-      {/* Animated Background Layers */}
+      {/* Animated Background Layers - disabled for performance */}
       <div className="pointer-events-none absolute inset-0 -z-10">
-        <motion.div 
+        <div 
           className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(79,70,229,0.15),transparent_35%)]" 
-          animate={{
-            scale: [1, 1.1, 1],
-            opacity: [0.3, 0.5, 0.3]
-          }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
         />
-        <motion.div 
+        <div 
           className="absolute inset-0 bg-[radial-gradient(circle_at_80%_0%,rgba(56,189,248,0.15),transparent_30%)]" 
-          animate={{
-            scale: [1, 1.15, 1],
-            opacity: [0.3, 0.6, 0.3]
-          }}
-          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1 }}
         />
-        <motion.div 
+        <div 
           className="absolute inset-0 bg-[radial-gradient(circle_at_60%_80%,rgba(139,92,246,0.1),transparent_40%)]" 
-          animate={{
-            scale: [1.1, 1, 1.1],
-            opacity: [0.2, 0.4, 0.2]
-          }}
-          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 2 }}
         />
       </div>
 
@@ -249,6 +237,9 @@ export default function App() {
       <About />
       <Skills />
       <Projects projects={projects} />
+      <Suspense fallback={null}>
+        <Testimonials />
+      </Suspense>
       <Contact />
       <Footer />
       
