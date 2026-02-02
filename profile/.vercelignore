@@ -1,5 +1,7 @@
-node_modules
 .git
 .env
+.env.example
 server/
 server
+*.log
+.DS_Store
