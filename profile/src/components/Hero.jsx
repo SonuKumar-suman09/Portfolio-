@@ -9,7 +9,7 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="mx-auto w-full flex flex-col md:flex-row items-center justify-between gap-8 sm:gap-12 px-4 sm:px-6 pb-16 sm:pb-24 pt-20 sm:pt-32 md:pt-40 relative overflow-hidden max-w-7xl"
+      className="mx-auto w-full flex flex-col md:flex-row items-center justify-between gap-8 sm:gap-12 px-4 sm:px-6 pb-16 sm:pb-24 pt-24 sm:pt-32 md:pt-48 relative overflow-hidden max-w-7xl"
     >
       {/* Floating orbs - static for performance */}
       <div className="absolute -top-10 -right-20 w-24 h-24 sm:w-32 sm:h-32 bg-indigo-500/10 rounded-full blur-3xl" />

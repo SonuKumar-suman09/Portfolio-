@@ -48,9 +48,9 @@ function NavbarComponent() {
 
   return (
     <motion.header 
-      className={`sticky top-0 z-30 border-b backdrop-blur-xl transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 border-b backdrop-blur-xl transition-all duration-300 ${
         scrolled 
-          ? (theme === 'dark' ? 'border-white/20 bg-slate-950/90 shadow-lg shadow-indigo-500/10' : 'border-black/10 bg-white/90 shadow-lg') 
+          ? (theme === 'dark' ? 'border-white/20 bg-slate-950/95 shadow-lg shadow-indigo-500/10' : 'border-black/10 bg-white/95 shadow-lg') 
           : (theme === 'dark' ? 'border-white/10 bg-slate-950/70' : 'border-black/10 bg-white/70')
       }`}
       initial={{ y: -100 }}
