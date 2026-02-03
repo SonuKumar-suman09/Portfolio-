@@ -3,8 +3,6 @@
 Welcome to my **Personal Portfolio Website**!  
 This project is designed to showcase my skills, projects, certifications, and achievements in a clean and professional manner. It serves as a central place for recruiters, classmates, and collaborators to learn more about me and my work.
 
----
-
 ## ✨ Features
 
 - 📄 About Me section
@@ -15,8 +13,6 @@ This project is designed to showcase my skills, projects, certifications, and ac
 - 📬 Contact Me form
 - 📱 Fully Responsive Design (Mobile & Desktop friendly)
 
----
-
 ## 🧑‍💻 Tech Stack
 
 - **HTML5**
@@ -24,20 +20,10 @@ This project is designed to showcase my skills, projects, certifications, and ac
 - **JavaScript**
 - *(Add more if used: Bootstrap / Tailwind / React, etc.)*
 
----
-
-## 📸 Screenshots
-
-_Add screenshots of your portfolio here (optional but recommended)._
-
----
-
 ## 🚀 Live Demo
 
 🔗 **Live Website:**  
 https://sonu123.vercel.app/
 
----
 
-## 📂 Project Structure
 
