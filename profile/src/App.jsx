@@ -5,16 +5,16 @@ import Hero from "./components/Hero";
 import About from "./components/About";
 import Skills from "./components/Skills";
 import Projects from "./components/Projects";
+import Certifications from "./components/Certifications";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
-import ScrollToTop from "./components/ScrollToTop";
 import { useTheme } from "./ThemeContext";
 
 // Featured projects to display
 const FEATURED_REPOS = [
   "DSA-Calculator",
   "Customer-Intelligence-Revenue-Optimization-System",
-  "Road-Accident-Analysis-Dashboard",
+  "Job-Seekers-Website",
   "Predictive-Analytics-Project-Diabetes-Prediction-using-Python",
   "ai-travel",
   "e-learning-platform-",
@@ -27,36 +27,42 @@ const PROJECT_DESCRIPTIONS = {
     description: "Advanced calculator implementing stack-based expression evaluation with real-time step-by-step visualizations. Demonstrates algorithmic thinking and clean code architecture.",
     tech: ["JavaScript", "React", "Data Structures", "Algorithms"],
     demoLink: "https://dsa-cal.onrender.com/",
+    image: "/projects/dsa-calculator.png",
   },
   "Customer-Intelligence-Revenue-Optimization-System": {
     title: "Customer Intelligence Revenue Optimization",
     description: "Industry-oriented Data Science project showcasing customer segmentation, revenue prediction, and churn analysis using advanced machine learning techniques.",
     tech: ["Python", "Scikit-Learn", "Machine Learning", "Data Analysis"],
     demoLink: "#",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500&h=300&fit=crop",
   },
-  "Road-Accident-Analysis-Dashboard": {
-    title: "Road Accident Analysis Dashboard",
-    description: "Power BI dashboard transforming raw accident data into interactive dashboards. Identifies accident patterns, high-risk areas, severity levels, and key factors for road safety.",
-    tech: ["Power BI", "Data Visualization", "Analytics", "DAX"],
-    demoLink: "#",
+  "Job-Seekers-Website": {
+    title: "Job Seekers Website",
+    description: "Comprehensive job search platform connecting job seekers with employers. Features job listings, application tracking, user profiles, and advanced search functionality.",
+    tech: ["React", "JavaScript", "Web Development", "UI/UX"],
+    demoLink: "https://job-seeker-website-black.vercel.app/",
+    image: "/projects/job-seekers-website.png",
   },
   "Predictive-Analytics-Project-Diabetes-Prediction-using-Python": {
     title: "Diabetes Prediction System",
     description: "Predictive analytics project using Pima Indians dataset. Implements multiple ML models including Logistic Regression, KNN, Decision Tree, and Naive Bayes with comprehensive evaluation metrics.",
     tech: ["Python", "Scikit-Learn", "Machine Learning", "Data Preprocessing"],
     demoLink: "#",
+    image: "https://images.unsplash.com/photo-1576091160550-112173cd7147?w=500&h=300&fit=crop",
   },
   "ai-travel": {
     title: "AI Travel Booking Platform",
     description: "Intelligent travel planning web application with flight search, booking management, and AI-powered recommendations for travel itineraries.",
     tech: ["HTML", "JavaScript", "React", "API Integration"],
     demoLink: "https://ai-travel-blue.vercel.app",
+    image: "https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=500&h=300&fit=crop",
   },
   "e-learning-platform-": {
     title: "E-Learning Platform",
     description: "Full-featured online learning platform with course management, interactive lessons, progress tracking, and user authentication.",
     tech: ["JavaScript", "React", "Node.js", "Database"],
     demoLink: "#",
+    image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=500&h=300&fit=crop",
   },
 };
 
@@ -94,7 +100,8 @@ export default function App() {
               description: customData.description || repo.description || "Check out this project on GitHub",
               tech: customData.tech || [repo.language || "Project"].filter(Boolean),
               githubLink: repo.html_url,
-              demoLink: customData.demoLink || repo.homepage || "#",
+              demoLink: customData.demoLink || repo.homepage || repo.html_url,
+              image: customData.image || null,
             };
           });
         
@@ -115,7 +122,8 @@ export default function App() {
             description: customData.description || "GitHub Project",
             tech: customData.tech || ["Project"],
             githubLink: `https://github.com/SonuKumar-suman09/${name}`,
-            demoLink: customData.demoLink || "#",
+            demoLink: customData.demoLink || `https://github.com/SonuKumar-suman09/${name}`,
+            image: customData.image || null,
           };
         });
         setProjects(fallbackProjects);
@@ -146,65 +154,28 @@ export default function App() {
         style={{ scaleX }}
       />
 
-      {/* Abstract Data Network Visualization */}
+      {/* Static Data Network Visualization (performance optimized) */}
       <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
-        {/* Flowing data lines */}
-        <svg className="absolute inset-0 w-full h-full opacity-20">
+        <svg className="absolute inset-0 w-full h-full opacity-15">
           <defs>
             <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#4f46e5" stopOpacity="0.5" />
-              <stop offset="50%" stopColor="#8b5cf6" stopOpacity="0.3" />
-              <stop offset="100%" stopColor="#06b6d4" stopOpacity="0.5" />
+              <stop offset="0%" stopColor="#4f46e5" stopOpacity="0.4" />
+              <stop offset="50%" stopColor="#8b5cf6" stopOpacity="0.25" />
+              <stop offset="100%" stopColor="#06b6d4" stopOpacity="0.35" />
             </linearGradient>
           </defs>
-          
-          {/* Data connection lines */}
-          <motion.path
-            d="M 0 200 Q 200 100 400 200 T 800 200"
-            stroke="url(#lineGradient)"
-            strokeWidth="2"
-            fill="none"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={{ pathLength: 1, opacity: 0.3 }}
-            transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-          />
-          <motion.path
-            d="M 100 400 Q 300 300 500 400 T 900 400"
-            stroke="url(#lineGradient)"
-            strokeWidth="2"
-            fill="none"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={{ pathLength: 1, opacity: 0.2 }}
-            transition={{ duration: 4, repeat: Infinity, ease: "linear", delay: 1 }}
-          />
-          <motion.path
-            d="M 1400 300 Q 1200 200 1000 300 T 600 300"
-            stroke="url(#lineGradient)"
-            strokeWidth="2"
-            fill="none"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={{ pathLength: 1, opacity: 0.25 }}
-            transition={{ duration: 5, repeat: Infinity, ease: "linear", delay: 2 }}
-          />
+          <path d="M 0 200 Q 200 100 400 200 T 800 200" stroke="url(#lineGradient)" strokeWidth="2" fill="none" />
+          <path d="M 100 400 Q 300 300 500 400 T 900 400" stroke="url(#lineGradient)" strokeWidth="2" fill="none" />
+          <path d="M 1400 300 Q 1200 200 1000 300 T 600 300" stroke="url(#lineGradient)" strokeWidth="2" fill="none" />
         </svg>
-        
-        {/* Data nodes */}
+
         {[...Array(8)].map((_, i) => (
-          <motion.div
+          <div
             key={i}
-            className="absolute w-2 h-2 rounded-full bg-gradient-to-r from-indigo-400 to-cyan-400"
+            className="absolute w-2 h-2 rounded-full bg-gradient-to-r from-indigo-400 to-cyan-400 opacity-40"
             style={{
               left: `${15 + i * 12}%`,
               top: `${20 + (i % 3) * 25}%`,
-            }}
-            animate={{
-              scale: [1, 1.5, 1],
-              opacity: [0.3, 0.6, 0.3],
-            }}
-            transition={{
-              duration: 2 + i * 0.3,
-              repeat: Infinity,
-              delay: i * 0.2,
             }}
           />
         ))}
@@ -215,17 +186,11 @@ export default function App() {
         <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(79,70,229,0.05)_1px,transparent_1px),linear-gradient(to_bottom,rgba(79,70,229,0.05)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,black,transparent)]" />
       </div>
       
-      {/* Animated Background Layers - disabled for performance */}
+      {/* Static Background Layers (performance optimized) */}
       <div className="pointer-events-none absolute inset-0 -z-10">
-        <div 
-          className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(79,70,229,0.15),transparent_35%)]" 
-        />
-        <div 
-          className="absolute inset-0 bg-[radial-gradient(circle_at_80%_0%,rgba(56,189,248,0.15),transparent_30%)]" 
-        />
-        <div 
-          className="absolute inset-0 bg-[radial-gradient(circle_at_60%_80%,rgba(139,92,246,0.1),transparent_40%)]" 
-        />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(79,70,229,0.12),transparent_35%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_0%,rgba(56,189,248,0.12),transparent_30%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_60%_80%,rgba(139,92,246,0.08),transparent_40%)]" />
       </div>
 
       {/* Sections */}
@@ -234,12 +199,10 @@ export default function App() {
       <About />
       <Skills />
       <Projects projects={projects} />
+      <Certifications />
       <Contact />
       <Footer />
       
-      {/* Scroll to Top Button */}
-      <ScrollToTop />
-
     </main>
   );
 }

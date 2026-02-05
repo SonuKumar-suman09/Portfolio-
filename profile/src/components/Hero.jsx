@@ -9,11 +9,21 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="mx-auto w-full flex flex-col md:flex-row items-center justify-center gap-8 sm:gap-12 md:gap-16 px-4 sm:px-6 pb-16 sm:pb-24 pt-24 sm:pt-32 md:pt-48 relative overflow-hidden max-w-7xl"
+      className="mx-auto flex min-h-[85vh] max-w-6xl flex-col md:flex-row items-center justify-between gap-12 px-6 pb-24 pt-32 relative overflow-hidden"
     >
-      {/* Floating orbs - static for performance */}
-      <div className="absolute -top-10 -right-20 w-24 h-24 sm:w-32 sm:h-32 bg-indigo-500/10 rounded-full blur-3xl" />
-      <div className="absolute -bottom-20 -left-10 w-32 h-32 sm:w-40 sm:h-40 bg-purple-500/10 rounded-full blur-3xl" />
+      {/* Floating orbs */}
+      <motion.div
+        className="absolute top-20 right-20 w-32 h-32 bg-indigo-500/10 rounded-full blur-3xl"
+        style={{ y: floatY1 }}
+        animate={{ scale: [1, 1.08, 1] }}
+        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+      />
+      <motion.div
+        className="absolute bottom-20 left-20 w-40 h-40 bg-purple-500/10 rounded-full blur-3xl"
+        style={{ y: floatY2 }}
+        animate={{ scale: [1, 1.15, 1] }}
+        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+      />
 
       {/* Left Content */}
       <div className="flex-1 flex flex-col gap-6 text-center md:text-left relative z-10">
@@ -130,10 +140,10 @@ export default function Hero() {
         initial={{ opacity: 0, scale: 0.8, x: 50 }}
         animate={{ opacity: 1, scale: 1, x: 0 }}
         transition={{ delay: 0.2, duration: 0.8 }}
-        className="relative z-10 flex-shrink-0 flex justify-center"
+        className="relative z-10"
       >
         <div className="relative">
-          <div className="w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 lg:w-[28rem] lg:h-[28rem] rounded-full overflow-hidden border-4 border-indigo-400 shadow-2xl shadow-indigo-500/50 bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center">
+          <div className="w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-4 border-indigo-400 shadow-2xl shadow-indigo-500/50 bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center">
             <img 
               src="/profile.png" 
               alt="Sonu Kumar" 

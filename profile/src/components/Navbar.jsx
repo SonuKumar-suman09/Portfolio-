@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef, memo } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useTheme } from "../ThemeContext";
 
@@ -7,50 +7,41 @@ const navItems = [
   { label: "About", href: "#about" },
   { label: "Skills", href: "#skills" },
   { label: "Projects", href: "#projects" },
+  { label: "Certifications", href: "#certifications" },
   { label: "Contact", href: "#contact" },
 ];
 
-function NavbarComponent() {
+export default function Navbar() {
   const [active, setActive] = useState("#home");
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const { theme, toggle } = useTheme();
-  const scrollTimeoutRef = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => {
-      // Throttle scroll event
-      if (scrollTimeoutRef.current) return;
+      setScrolled(window.scrollY > 50);
       
-      scrollTimeoutRef.current = setTimeout(() => {
-        setScrolled(window.scrollY > 50);
-        
-        navItems.forEach(item => {
-          const section = document.querySelector(item.href);
-          if (section) {
-            const top = section.offsetTop - 120;
-            const height = section.offsetHeight;
-            if (window.scrollY >= top && window.scrollY < top + height) {
-              setActive(item.href);
-            }
+      navItems.forEach(item => {
+        const section = document.querySelector(item.href);
+        if (section) {
+          const top = section.offsetTop - 120;
+          const height = section.offsetHeight;
+          if (window.scrollY >= top && window.scrollY < top + height) {
+            setActive(item.href);
           }
-        });
-        scrollTimeoutRef.current = null;
-      }, 50);
+        }
+      });
     };
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current);
-    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
     <motion.header 
-      className={`fixed top-0 left-0 right-0 z-50 border-b backdrop-blur-xl transition-all duration-300 ${
+      className={`sticky top-0 z-30 border-b backdrop-blur-xl transition-all duration-300 ${
         scrolled 
-          ? (theme === 'dark' ? 'border-white/20 bg-slate-950/95 shadow-lg shadow-indigo-500/10' : 'border-black/10 bg-white/95 shadow-lg') 
+          ? (theme === 'dark' ? 'border-white/20 bg-slate-950/90 shadow-lg shadow-indigo-500/10' : 'border-black/10 bg-white/90 shadow-lg') 
           : (theme === 'dark' ? 'border-white/10 bg-slate-950/70' : 'border-black/10 bg-white/70')
       }`}
       initial={{ y: -100 }}
@@ -104,6 +95,25 @@ function NavbarComponent() {
           ))}
         </nav>
 
+        {/* Resume Button */}
+        <motion.a
+          href="/resume"
+          target="_blank"
+          rel="noopener noreferrer"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6 }}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          className={`hidden sm:inline-flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold transition ${
+            theme === 'dark'
+              ? 'bg-gradient-to-r from-purple-500/20 to-pink-500/20 border border-purple-400/50 text-purple-300 hover:from-purple-500/30 hover:to-pink-500/30 hover:border-purple-400'
+              : 'bg-gradient-to-r from-purple-100 to-pink-100 border border-purple-300 text-purple-700 hover:border-purple-500'
+          }`}
+        >
+          📄 Resume
+        </motion.a>
+
           {/* Mobile controls */}
           <div className="flex items-center gap-2">
             {/* Theme toggle */}
@@ -145,5 +155,3 @@ function NavbarComponent() {
     </motion.header>
   );
 }
-
-export default memo(NavbarComponent);

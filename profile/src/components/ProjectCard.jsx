@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
 import { useTheme } from "../ThemeContext";
+import { useState } from "react";
+import { Github, ExternalLink } from "lucide-react";
 
 export default function ProjectCard({
   title,
@@ -7,47 +9,55 @@ export default function ProjectCard({
   tech = [],
   githubLink,
   demoLink,
+  image,
 }) {
   const { theme } = useTheme();
+  const [imageLoaded, setImageLoaded] = useState(false);
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      whileHover={{ 
-        y: -12, 
-        scale: 1.03,
-        rotateX: 5,
-      }}
-      transition={{ duration: 0.4, ease: "easeOut" }}
-      className={`group relative flex flex-col justify-between gap-5 rounded-2xl border backdrop-blur-xl p-6 shadow-2xl hover:border-indigo-400/50 overflow-hidden ${theme === 'dark' ? 'border-white/10 bg-gradient-to-br from-slate-900/90 to-slate-800/90 hover:shadow-indigo-500/30' : 'border-slate-200 bg-white shadow-sm hover:shadow-lg'}`}
-      style={{ transformStyle: 'preserve-3d' }}
+      whileHover={{ y: -8, scale: 1.02 }}
+      transition={{ duration: 0.35, ease: "easeOut" }}
+      className={`group relative flex h-full flex-col justify-between gap-5 rounded-2xl border backdrop-blur-xl p-6 shadow-2xl hover:border-indigo-400/50 overflow-hidden ${theme === 'dark' ? 'border-white/10 bg-gradient-to-br from-slate-900/90 to-slate-800/90 hover:shadow-indigo-500/30' : 'border-slate-200 bg-white shadow-sm hover:shadow-lg'}`}
     >
       {/* Animated gradient border */}
-      <motion.div
+      <div
         className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
         style={{
-          background: 'linear-gradient(90deg, rgba(79,70,229,0.3), rgba(139,92,246,0.3), rgba(236,72,153,0.3))',
-          backgroundSize: '200% 200%',
+          background: 'linear-gradient(90deg, rgba(79,70,229,0.25), rgba(139,92,246,0.25), rgba(236,72,153,0.25))',
         }}
-        animate={{
-          backgroundPosition: ['0% 50%', '100% 50%', '0% 50%']
-        }}
-        transition={{ duration: 3, repeat: Infinity }}
       />
       
       {/* Glass effect */}
       <div className="absolute inset-0 bg-gradient-to-br from-white/[0.05] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
       
-      {/* Shine effect */}
-      <motion.div
-        className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100"
-        initial={{ x: '-100%' }}
-        whileHover={{ x: '100%' }}
-        transition={{ duration: 0.8 }}
-      />
       {/* Content */}
       <div className="relative z-10">
+        {/* Project Image */}
+        {image && (
+          <motion.div 
+            className="relative overflow-hidden rounded-lg mb-4 h-44 bg-white border border-slate-200"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: imageLoaded ? 1 : 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <motion.img 
+              src={image}
+              alt={title}
+              onLoad={() => setImageLoaded(true)}
+              className="w-full h-full object-cover object-center"
+              initial={{ scale: 1 }}
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.4 }}
+              loading="lazy"
+            />
+            {!imageLoaded && (
+              <div className="absolute inset-0 animate-pulse bg-slate-200" />
+            )}
+          </motion.div>
+        )}
         <motion.h3 
           className={`text-xl font-semibold transition-colors ${theme === 'dark' ? 'text-white group-hover:text-indigo-300' : 'text-slate-900 group-hover:text-indigo-600'}`}
           whileHover={{ x: 4 }}
@@ -80,33 +90,14 @@ export default function ProjectCard({
 
       {/* Actions */}
       <div className="relative z-10 flex flex-wrap gap-3 text-sm font-semibold">
-        {githubLink && (
-          <motion.a
-            href={githubLink}
-            target="_blank"
-            rel="noreferrer"
-            whileHover={{ scale: 1.08, y: -2 }}
-            whileTap={{ scale: 0.95 }}
-            className="group/btn relative rounded-full border border-white/20 px-4 py-2 text-slate-200 transition hover:border-indigo-300 hover:text-white hover:bg-white/10 backdrop-blur-sm overflow-hidden"
-          >
-            <motion.span
-              className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent"
-              initial={{ x: '-100%' }}
-              whileHover={{ x: '100%' }}
-              transition={{ duration: 0.5 }}
-            />
-            <span className="relative z-10">View Code</span>
-          </motion.a>
-        )}
-
         {demoLink && (
           <motion.a
             href={demoLink}
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
             whileHover={{ scale: 1.08, y: -2 }}
             whileTap={{ scale: 0.95 }}
-            className="relative rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 px-4 py-2 text-white transition hover:from-indigo-400 hover:to-purple-400 hover:shadow-lg hover:shadow-indigo-500/50 overflow-hidden group/btn"
+            className="flex-1 relative rounded-lg bg-gradient-to-r from-indigo-500 to-purple-500 px-4 py-2.5 text-white transition hover:from-indigo-400 hover:to-purple-400 hover:shadow-lg hover:shadow-indigo-500/50 overflow-hidden group/btn text-center"
           >
             <motion.span
               className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
@@ -114,7 +105,32 @@ export default function ProjectCard({
               whileHover={{ x: '100%' }}
               transition={{ duration: 0.5 }}
             />
-            <span className="relative z-10">Live Demo</span>
+            <span className="relative z-10 flex items-center justify-center gap-2">
+              <ExternalLink size={16} aria-hidden="true" />
+              <span>Live</span>
+            </span>
+          </motion.a>
+        )}
+        
+        {githubLink && (
+          <motion.a
+            href={githubLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            whileHover={{ scale: 1.08, y: -2 }}
+            whileTap={{ scale: 0.95 }}
+            className="flex-1 group/btn relative rounded-lg border border-white/20 px-4 py-2.5 text-slate-200 transition hover:border-indigo-300 hover:text-white hover:bg-white/10 backdrop-blur-sm overflow-hidden text-center"
+          >
+            <motion.span
+              className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent"
+              initial={{ x: '-100%' }}
+              whileHover={{ x: '100%' }}
+              transition={{ duration: 0.5 }}
+            />
+            <span className="relative z-10 flex items-center justify-center gap-2">
+              <Github size={16} aria-hidden="true" />
+              <span>GitHub</span>
+            </span>
           </motion.a>
         )}
       </div>
