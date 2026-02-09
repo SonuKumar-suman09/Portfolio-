@@ -48,7 +48,7 @@ const PROJECT_DESCRIPTIONS = {
     description: "Predictive analytics project using Pima Indians dataset. Implements multiple ML models including Logistic Regression, KNN, Decision Tree, and Naive Bayes with comprehensive evaluation metrics.",
     tech: ["Python", "Scikit-Learn", "Machine Learning", "Data Preprocessing"],
     demoLink: "#",
-    image: "https://images.unsplash.com/photo-1576091160550-112173cd7147?w=500&h=300&fit=crop",
+    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=500&h=300&fit=crop",
   },
   "ai-travel": {
     title: "AI Travel Booking Platform",
