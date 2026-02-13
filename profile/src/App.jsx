@@ -6,6 +6,7 @@ import About from "./components/About";
 import Skills from "./components/Skills";
 import Projects from "./components/Projects";
 import Certifications from "./components/Certifications";
+import Achievements from "./components/Achievements";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import { useTheme } from "./ThemeContext";
@@ -200,6 +201,7 @@ export default function App() {
       <Skills />
       <Projects projects={projects} />
       <Certifications />
+      <Achievements />
       <Contact />
       <Footer />
       

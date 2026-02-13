@@ -247,9 +247,7 @@ export default function Certifications() {
   return (
     <motion.section
       id="certifications"
-      className={`${
-        theme === "dark" ? "bg-slate-950/50" : "bg-slate-50"
-      } py-16`}
+      className={`${theme === "dark" ? "bg-slate-950/50" : "bg-slate-50"} py-10`}
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}

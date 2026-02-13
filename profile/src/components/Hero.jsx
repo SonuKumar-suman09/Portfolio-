@@ -9,7 +9,7 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="mx-auto flex min-h-[85vh] max-w-6xl flex-col md:flex-row items-center justify-between gap-12 px-6 pb-24 pt-40 relative overflow-hidden"
+      className="mx-auto flex min-h-[85vh] max-w-6xl flex-col md:flex-row items-center justify-between gap-12 px-6 pb-24 pt-32 relative overflow-hidden"
     >
       {/* Floating orbs */}
       <motion.div

@@ -101,7 +101,7 @@ export default function About() {
         transition={{ delay: 0.1 }}
         className={`mt-6 leading-relaxed ${theme === 'dark' ? 'text-slate-300' : 'text-slate-700'}`}
       >
-        I’m a Computer Science Engineering undergraduate at Lovely Professional
+        I'm a Computer Science Engineering undergraduate at Lovely Professional
         University with a strong focus on{" "}
         <span className="text-indigo-400 font-medium">
           Data Analytics, Data Science, and Machine Learning
